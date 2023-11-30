@@ -1,6 +1,12 @@
-# Bot Framework Samples
-This repo contains samples that are specifically used in the blog posts. You can find additional [SDK V4](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples) and [SDK V3](https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples) in the BotBuilder-Samples repo.
+# MockChannel
+When creating load tests as described in [Load testing a Bot](https://blog.botframework.com/2017/06/19/Load-Testing-A-Bot/) you need 
+a service to pass as the activity.ServiceUrl.
 
-## Contributing
+This is a sample implementation of that callback service.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+To use:
+* build and deploy (say http://yourmockservice.azurewebsites.net)
+* When posting an activity to your bot from your webTest, set the activity.ServiceUrl = "http://yourmockservice.azurewebsites.net" 
+
+When you run your load test generating requests to your bot, when the bot posts back it will post back to the ServiceUrl 
+in the activity which is this mock service.
