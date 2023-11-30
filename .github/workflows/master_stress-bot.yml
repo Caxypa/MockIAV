@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           mkdir ${{ github.workspace }}/deploy
-          cp -r ./bin/Release/* ${{ github.workspace }}/deploy
+          cp -r . ${{ github.workspace }}/deploy
 
 
       - name: Deploy to Azure Web App
