@@ -1,7 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy ASP app to Azure Web App - stress-bot
+name: Deploy ASP app to Azure Web App - MockIAV
 
 on:
   push:
@@ -10,48 +7,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Set up deployment files
+        # Укажите здесь путь к собранным файлам в вашем репозитории
+        shell: bash
+        run: |
+          mkdir ${{ github.workspace }}/deploy
+          cp -r ./bin/Release/* ${{ github.workspace }}/deploy
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
 
-      - name: Restore NuGet packages
-        run: nuget restore
-
-      - name: Publish to folder
-        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: ASP-app
-          path: '/published/**'
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: ASP-app
-      
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'stress-bot'
           slot-name: 'Production'
-          package: .
+          package: ${{ github.workspace }}/deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2A18407396B74796A7D0DDE67C0EC121 }}
