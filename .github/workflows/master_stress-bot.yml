@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up deployment files
+      - name: Set up deployment
         # Укажите здесь путь к собранным файлам в вашем репозитории
         shell: bash
         run: |
