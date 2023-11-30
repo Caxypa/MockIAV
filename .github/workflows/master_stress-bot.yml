@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up deployment files
-        run: |
-          mkdir "${{ github.workspace }}\deploy"
-          cp -r . "${{ github.workspace }}\deploy"
+      #- name: Set up deployment files
+      #  run: |
+      #    mkdir "${{ github.workspace }}\deploy"
+      #    cp -r . "${{ github.workspace }}\deploy"
 
 
       - name: Deploy to Azure Web App
@@ -24,7 +24,7 @@ jobs:
         with:
           app-name: 'stress-bot'
           slot-name: 'Production'
-          package: ${{ github.workspace }}\deploy
+          package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2A18407396B74796A7D0DDE67C0EC121 }}
 
 
