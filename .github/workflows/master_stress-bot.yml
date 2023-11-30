@@ -13,12 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up deployment
-        # Укажите здесь путь к собранным файлам в вашем репозитории
-        shell: bash
+      - name: Set up deployment files
         run: |
-          mkdir ${{ github.workspace }}/deploy
-          cp -r . ${{ github.workspace }}/deploy
+          mkdir "${{ github.workspace }}\deploy"
+          cp -r . "${{ github.workspace }}\deploy"
 
 
       - name: Deploy to Azure Web App
