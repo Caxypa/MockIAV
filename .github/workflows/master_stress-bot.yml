@@ -24,7 +24,7 @@ jobs:
         with:
           app-name: 'stress-bot'
           slot-name: 'Production'
-          package: ${{ github.workspace }}/deploy
+          package: ${{ github.workspace }}\deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2A18407396B74796A7D0DDE67C0EC121 }}
 
 
