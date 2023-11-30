@@ -4,7 +4,7 @@ a service to pass as the activity.ServiceUrl.
 
 This is a sample implementation of that callback service.
 
-1To use:
+To use:
 * build and deploy (say http://yourmockservice.azurewebsites.net)
 * When posting an activity to your bot from your webTest, set the activity.ServiceUrl = "http://yourmockservice.azurewebsites.net" 
 
