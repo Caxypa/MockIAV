@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: IAVtest
 
     steps:
       - uses: actions/checkout@v4
@@ -26,3 +26,6 @@ jobs:
           slot-name: 'Production'
           package: ${{ github.workspace }}/deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2A18407396B74796A7D0DDE67C0EC121 }}
+
+
+          
